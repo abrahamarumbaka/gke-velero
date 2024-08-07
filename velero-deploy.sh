@@ -19,10 +19,10 @@ if [ `echo $?` -eq 1 ];then
 fi
 
 echo "-------Create a service account for velero"
-gcloud iam service-accounts list | grep vsa4yong1
+gcloud iam service-accounts list | grep abrahamarumbaka
 if [ `echo $?` -eq 1 ];then
   export MY_PROJECT_ID=$(gcloud config get-value project)
-  MY_GSA_NAME=vsa4yong1
+  MY_GSA_NAME=abrahamarumbaka
 
   gcloud iam service-accounts create $MY_GSA_NAME \
     --display-name "Velero service account"
@@ -61,7 +61,7 @@ if [ `echo $?` -eq 1 ];then
 
   gsutil iam ch serviceAccount:$MY_SERVICE_ACCOUNT_EMAIL:objectAdmin gs://$(cat bucket4velero1)
 
-  gcloud iam service-accounts keys create yongsa4velero1 \
+  gcloud iam service-accounts keys create abrahamsa4velero1 \
     --iam-account $MY_SERVICE_ACCOUNT_EMAIL
 fi
 
@@ -72,7 +72,7 @@ velero install \
     --bucket $(cat bucket4velero1) \
     --use-node-agent \
     --uploader-type restic \
-    --secret-file ./yongsa4velero1
+    --secret-file ./abrahamsa4velero1
 
 # --features=EnableCSI \
 #     --plugins velero/velero-plugin-for-gcp:v1.6.0,velero/velero-plugin-for-csi:v0.3.0 \
