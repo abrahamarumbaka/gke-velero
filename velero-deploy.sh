@@ -1,7 +1,8 @@
 echo '-------Deploy Velero for GKE Backup (typically in 1 min)'
 starttime=$(date +%s)
 . ./setenv.sh
-
+$MY_PROJECT_ID='solar-bebop-431805-c9'
+$MY_SERVICE_ACCOUNT_EMAIL='velero@solar-bebop-431805-c9.iam.gserviceaccount.com'
 echo "-------Download and Install verlero CLI if needed"
 if [ ! -f ~/gke-casa/velero ]; then
   wget https://github.com/vmware-tanzu/velero/releases/download/v1.12.0/velero-v1.12.0-linux-amd64.tar.gz
@@ -17,15 +18,6 @@ if [ `echo $?` -eq 1 ];then
   echo $MY_BUCKET-$(date +%d%H%M%s) > bucket4velero1
   gsutil mb gs://$(cat bucket4velero1)/
 fi
-
-echo "-------Create a service account for velero"
-sudo gcloud iam service-accounts list | grep abrahamarumbaka
-if [ `echo $?` -eq 1 ];then
-  export MY_PROJECT_ID=$(gcloud config get-value project)
-  MY_GSA_NAME=abrahamarumbaka
-
- sudo gcloud iam service-accounts create $MY_GSA_NAME \
-    --display-name "Velero service account"
 
   MY_SERVICE_ACCOUNT_EMAIL=$(sudo gcloud iam service-accounts list \
     --filter="displayName:Velero service account" \
