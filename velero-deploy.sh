@@ -13,7 +13,7 @@ if [ ! -f ~/gke-casa/velero ]; then
 fi
 
 echo "-------Create a GCS storage bucket if not exist"
-cat gke-demo-back
+cat bucket4velero1
 if [ `echo $?` -eq 1 ];then
   echo $MY_BUCKET-$(date +%d%H%M%s) > bucket4velero1
   gsutil mb gs://$(cat bucket4velero1)/
@@ -21,8 +21,10 @@ fi
 
   sudo gsutil iam ch serviceAccount:$MY_SERVICE_ACCOUNT_EMAIL:objectAdmin gs://$(cat bucket4velero1)
 
-  sudo gcloud iam service-accounts keys create abrahamsa4velero1 \
-    --iam-account $MY_SERVICE_ACCOUNT_EMAIL
+  gcloud iam service-accounts keys create abrahamsa4velero1 \
+  --iam-account $MY_SERVICE_ACCOUNT_EMAIL \
+  --key-type json
+
 fi
 
 echo "-------Install velero using the SA"
