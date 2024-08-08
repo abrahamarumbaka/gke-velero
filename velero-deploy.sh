@@ -21,9 +21,10 @@ fi
 
   sudo gsutil iam ch serviceAccount:$MY_SERVICE_ACCOUNT_EMAIL:objectAdmin gs://$(cat bucket4velero1)
 
-  gcloud iam service-accounts keys create abrahamsa4velero1 \
-  --iam-account $MY_SERVICE_ACCOUNT_EMAIL \
+ gcloud iam service-accounts keys create abrahamsa4velero1 \
+  --iam-account velero@solar-bebop-431805-c9.iam.gserviceaccount.com \
   --key-type json
+
 
 fi
 
