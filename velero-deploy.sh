@@ -25,9 +25,6 @@ fi
   --iam-account velero@solar-bebop-431805-c9.iam.gserviceaccount.com \
   --key-file-type json
 
-
-fi
-
 echo "-------Install velero using the SA"
 sudo velero install \
     --provider gcp \
