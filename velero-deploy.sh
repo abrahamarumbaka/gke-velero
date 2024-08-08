@@ -23,7 +23,7 @@ fi
 
  gcloud iam service-accounts keys create abrahamsa4velero1 \
   --iam-account velero@solar-bebop-431805-c9.iam.gserviceaccount.com \
-  --key-type json
+  --key-file-type json
 
 
 fi
